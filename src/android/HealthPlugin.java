@@ -1195,8 +1195,6 @@ public class HealthPlugin extends CordovaPlugin {
 
     DataReadRequest.Builder builder = new DataReadRequest.Builder();
     builder.aggregate(DataType.TYPE_BASAL_METABOLIC_RATE);
-    builder.bucketByTime(1, TimeUnit.DAYS);
-    builder.setTimeRange(nst, _et, TimeUnit.MILLISECONDS);
     DataReadRequest readRequest = builder.build();
 
     Task<DataReadResponse> task = Fitness.getHistoryClient(this.cordova.getContext(), this.account)
