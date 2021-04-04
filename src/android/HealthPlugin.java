@@ -1187,14 +1187,13 @@ public class HealthPlugin extends CordovaPlugin {
   // utility function that gets the basal metabolic rate averaged over a week
   private float getBasalAVG(long _et) throws Exception {
     float basalAVG = 0;
-    Calendar cal = java.util.Calendar.getInstance();
-    cal.setTime(new Date(_et));
-    //set start time to a week before end time
-    cal.add(Calendar.WEEK_OF_YEAR, -1);
-    long nst = cal.getTimeInMillis();
+    
+    long nst = 1388534400000L;
 
     DataReadRequest.Builder builder = new DataReadRequest.Builder();
     builder.aggregate(DataType.TYPE_BASAL_METABOLIC_RATE);
+    builder.bucketByTime(1, TimeUnit.DAYS);
+    builder.setTimeRange(nst, _et, TimeUnit.MILLISECONDS);
     DataReadRequest readRequest = builder.build();
 
     Task<DataReadResponse> task = Fitness.getHistoryClient(this.cordova.getContext(), this.account)
