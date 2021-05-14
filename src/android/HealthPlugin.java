@@ -535,7 +535,7 @@ public class HealthPlugin extends CordovaPlugin {
         obj.put("endDate", datapoint.getEndTime(TimeUnit.MILLISECONDS));
         DataSource dataSource = datapoint.getOriginalDataSource();
         if (dataSource != null) {
-          String sourceBundleId = dataSource.getAppPackageName();
+          String sourceBundleId = dataSource.getStreamName();
           if (sourceBundleId != null) obj.put("sourceBundleId", sourceBundleId);
         }
 
